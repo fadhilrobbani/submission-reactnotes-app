@@ -2,11 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-  @apply font-mono;
+* {
+  @apply font-sans;
 }
 
 html {
   @apply scroll-smooth;
+}
+
+body{
+  @apply bg-sky-700
 }
 

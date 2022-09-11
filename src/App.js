@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import AllNotes from './pages/AllNotes';
 import ArchiveNotes from './pages/ArchiveNotes';
 import Home from './pages/Home';
+import NewNote from './pages/NewNote';
 import NotFound from './pages/NotFound';
 import {
   getAllNotes,
@@ -20,6 +22,7 @@ export class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      allNotes: getAllNotes(),
       activeNotes: getActiveNotes(),
       archiveNote: getArchivedNotes(),
     };
@@ -31,12 +34,16 @@ export class App extends Component {
         <Navbar />
         <Routes>
           <Route path='/' element={<Home notes={this.state.activeNotes} />} />
-          <Route path='/notes/new' />
-          <Route
-            path='/archives'
-            element={<ArchiveNotes notes={this.state.archiveNote} />}
-          />
-          <Route path='*' element={<NotFound />} />
+          <Route path='/notes'>
+            <Route index element={<AllNotes notes={this.state.allNotes} />} />
+            <Route path='note/:id' />
+            <Route path='new' element={<NewNote />} />
+            <Route
+              path='archives'
+              element={<ArchiveNotes notes={this.state.archiveNote} />}
+            />
+          </Route>
+          <Route path='/*' element={<NotFound />} />
         </Routes>
       </>
     );

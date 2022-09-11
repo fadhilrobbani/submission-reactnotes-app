@@ -6,8 +6,8 @@ function NotFound() {
   const navigate = useNavigate();
   return (
     <div className='w-full flex justify-center'>
-      <div className='w-auto max-w-3xl h-screen flex gap-4 justify-center items-center flex-col'>
-        <img className='md:h-[450px]' src={notFound} alt='notfound' />
+      <div className='w-auto max-w-3xl flex gap-8 justify-center items-center flex-col'>
+        <img className='sm:h-80' src={notFound} alt='notfound' />
         <h1 className='font-bold text-2xl'>Maaf, halaman tidak tersedia</h1>
         <button
           onClick={() => navigate('/')}
