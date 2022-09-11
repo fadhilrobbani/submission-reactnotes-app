@@ -28,6 +28,17 @@ export class App extends Component {
     };
     autoBind(this);
   }
+
+  addNoteHandler({ title, body }) {
+    addNote({ title, body });
+    console.log(this.state.activeNotes);
+    this.setState(() => {
+      return {
+        activeNotes: getActiveNotes(),
+      };
+    });
+  }
+
   render() {
     return (
       <>
@@ -37,7 +48,10 @@ export class App extends Component {
           <Route path='/notes'>
             <Route index element={<AllNotes notes={this.state.allNotes} />} />
             <Route path='note/:id' />
-            <Route path='new' element={<NewNote />} />
+            <Route
+              path='new'
+              element={<NewNote addNote={this.addNoteHandler} />}
+            />
             <Route
               path='archives'
               element={<ArchiveNotes notes={this.state.archiveNote} />}

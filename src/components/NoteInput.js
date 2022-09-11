@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
-import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai';
+import ActionButtons from './ActionButtons';
 
-export default class NoteInput extends Component {
+class NoteInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,9 +28,15 @@ export default class NoteInput extends Component {
     });
   }
 
-  onClickSubmitHandler(ev) {
-    ev.preventDefault();
-    console.log('first');
+  onClickSubmitHandler() {
+    if (this.state.title === '' || this.state.body === '') {
+      console.log('ini title ' + this.state.title);
+      console.log('ini body ' + this.state.body);
+      return;
+    }
+
+    this.props.addNote(this.state);
+    console.log(this.state);
   }
 
   render() {
@@ -45,22 +51,20 @@ export default class NoteInput extends Component {
             placeholder='Catatan Baru'
           />
           <div
-            className='overflow-auto bg-yellow-200 p-5 h-full placeholder:text-slate-500 placeholder: focus:outline-none'
+            className='overflow-auto focus: bg-yellow-200 p-5 h-full placeholder:text-slate-500 placeholder: focus:outline-none'
             contentEditable='true'
             onInput={this.onBodyChangeHandler}
             data-placeholder='Catatan Baru'
           />
         </div>
-        <div
-          className='cursor-pointer z-[100] fixed rounded-full p-2 bottom-8 right-10 bg-green-200'
-          onClick={this.onClickSubmitHandler}
-        >
-          <AiOutlineCheck size={50} />
-        </div>
-        <div className='cursor-pointer z-[100] fixed rounded-full p-2 bottom-8 right-36 bg-pink-200'>
-          <AiOutlineClose size={50} />
-        </div>
+        <ActionButtons onClickSubmitHandler={this.onClickSubmitHandler} />
       </div>
     );
   }
 }
+
+NoteInput.propTypes = {
+  addNote: PropTypes.func.isRequired,
+};
+
+export default NoteInput;

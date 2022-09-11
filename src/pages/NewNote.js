@@ -2,14 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import NoteInput from '../components/NoteInput'
 
-function NewNote(props) {
+function NewNote({addNote}) {
   return (
     <section>
-      <NoteInput/>
+      <NoteInput addNote = {addNote}/>
     </section>
   )
 }
 
-NewNote.propTypes = {}
+NewNote.propTypes = {
+  addNote: PropTypes.func.isRequired,
+}
 
 export default NewNote
