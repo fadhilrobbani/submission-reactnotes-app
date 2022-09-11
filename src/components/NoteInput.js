@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
-import ActionButtons from './ActionButtons';
+import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai';
 
 class NoteInput extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class NoteInput extends Component {
   onBodyChangeHandler(ev) {
     this.setState(() => {
       return {
-        body: ev.target.innerHTML,
+        body: ev.target.textContent,
       };
     });
   }
@@ -36,6 +36,7 @@ class NoteInput extends Component {
     }
 
     this.props.addNote(this.state);
+    this.props.navigate();
     console.log(this.state);
   }
 
@@ -57,7 +58,18 @@ class NoteInput extends Component {
             data-placeholder='Catatan Baru'
           />
         </div>
-        <ActionButtons onClickSubmitHandler={this.onClickSubmitHandler} />
+        <div
+          className='cursor-pointer z-[100] fixed rounded-full p-2 bottom-8 right-10 bg-green-200'
+          onClick={this.onClickSubmitHandler}
+        >
+          <AiOutlineCheck size={50} />
+        </div>
+        <div
+          onClick={this.props.navigate}
+          className='cursor-pointer z-[100] fixed rounded-full p-2 bottom-8 right-36 bg-pink-200'
+        >
+          <AiOutlineClose size={50} />
+        </div>
       </div>
     );
   }

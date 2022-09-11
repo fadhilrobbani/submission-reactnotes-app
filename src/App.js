@@ -22,19 +22,17 @@ export class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      allNotes: getAllNotes(),
-      activeNotes: getActiveNotes(),
-      archiveNote: getArchivedNotes(),
+      notes: getAllNotes(),
     };
     autoBind(this);
   }
 
   addNoteHandler({ title, body }) {
     addNote({ title, body });
-    console.log(this.state.activeNotes);
+    console.log(this.state.notes);
     this.setState(() => {
       return {
-        activeNotes: getActiveNotes(),
+        notes: getAllNotes(),
       };
     });
   }
@@ -44,9 +42,12 @@ export class App extends Component {
       <>
         <Navbar />
         <Routes>
-          <Route path='/' element={<Home notes={this.state.activeNotes} />} />
+          <Route
+            path='/'
+            element={<Home notes={getActiveNotes(this.state.notes)} />}
+          />
           <Route path='/notes'>
-            <Route index element={<AllNotes notes={this.state.allNotes} />} />
+            <Route index element={<AllNotes notes={this.state.notes} />} />
             <Route path='note/:id' />
             <Route
               path='new'
@@ -54,7 +55,9 @@ export class App extends Component {
             />
             <Route
               path='archives'
-              element={<ArchiveNotes notes={this.state.archiveNote} />}
+              element={
+                <ArchiveNotes notes={getArchivedNotes(this.state.notes)} />
+              }
             />
           </Route>
           <Route path='/*' element={<NotFound />} />
