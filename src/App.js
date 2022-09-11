@@ -23,6 +23,8 @@ export class App extends Component {
     super(props);
     this.state = {
       notes: getAllNotes(),
+      keyword: '',
+      show: false,
     };
     autoBind(this);
   }
@@ -37,22 +39,47 @@ export class App extends Component {
     });
   }
 
-  onSearchNoteHandler({keyword}){
-    const filteredKeyword = keyword.toLowerCase().replace(/\s+/g, '');
-    return filteredKeyword
+  onKeywordChangeHandler(ev) {
+    this.setState({ keyword: ev.target.value });
+  }
+
+  onShowClickHandler() {
+    this.setState((prev) => {
+      return {
+        show: !prev.show,
+      };
+    });
   }
 
   render() {
     return (
       <>
-        <Navbar searchNote={this.onSearchNoteHandler} />
+        <Navbar
+          show={this.state.show}
+          keyword={this.state.keyword}
+          onKeywordChangeHandler={this.onKeywordChangeHandler}
+          onShowClickHandler={this.onShowClickHandler}
+        />
         <Routes>
           <Route
             path='/'
-            element={<Home notes={getActiveNotes(this.state.notes)} />}
+            element={
+              <Home
+                notes={getActiveNotes(this.state.notes)}
+                keyword={this.state.keyword}
+              />
+            }
           />
           <Route path='/notes'>
-            <Route index element={<AllNotes notes={this.state.notes} />} />
+            <Route
+              index
+              element={
+                <AllNotes
+                  notes={this.state.notes}
+                  keyword={this.state.keyword}
+                />
+              }
+            />
             <Route path='note/:id' />
             <Route
               path='new'
@@ -61,7 +88,10 @@ export class App extends Component {
             <Route
               path='archives'
               element={
-                <ArchiveNotes notes={getArchivedNotes(this.state.notes)} />
+                <ArchiveNotes
+                  notes={getArchivedNotes(this.state.notes)}
+                  keyword={this.state.keyword}
+                />
               }
             />
           </Route>
