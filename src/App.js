@@ -27,7 +27,7 @@ export class App extends Component {
     autoBind(this);
   }
 
-  addNoteHandler({ title, body }) {
+  onAddNoteHandler({ title, body }) {
     addNote({ title, body });
     console.log(this.state.notes);
     this.setState(() => {
@@ -37,10 +37,15 @@ export class App extends Component {
     });
   }
 
+  onSearchNoteHandler({keyword}){
+    const filteredKeyword = keyword.toLowerCase().replace(/\s+/g, '');
+    return filteredKeyword
+  }
+
   render() {
     return (
       <>
-        <Navbar />
+        <Navbar searchNote={this.onSearchNoteHandler} />
         <Routes>
           <Route
             path='/'
@@ -51,7 +56,7 @@ export class App extends Component {
             <Route path='note/:id' />
             <Route
               path='new'
-              element={<NewNote addNote={this.addNoteHandler} />}
+              element={<NewNote addNote={this.onAddNoteHandler} />}
             />
             <Route
               path='archives'

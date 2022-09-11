@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai';
+import swal from 'sweetalert';
 
 class NoteInput extends Component {
   constructor(props) {
@@ -32,11 +33,13 @@ class NoteInput extends Component {
     if (this.state.title === '' || this.state.body === '') {
       console.log('ini title ' + this.state.title);
       console.log('ini body ' + this.state.body);
+      swal('Judul dan Isi Catatan Anda Tidak Boleh Kosong ya!');
       return;
     }
 
     this.props.addNote(this.state);
     this.props.navigate();
+    
     console.log(this.state);
   }
 

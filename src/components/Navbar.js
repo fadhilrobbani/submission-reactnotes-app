@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FaArchive } from 'react-icons/fa';
 import SearchBar from './SearchBar';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import autoBind from 'react-autobind';
 
 class Navbar extends Component {
@@ -17,7 +17,7 @@ class Navbar extends Component {
 
   onKeywordChangeHandler(ev) {
     this.setState({ keyword: ev.target.value });
-    // this.props.search(this.state.keyword);
+    this.props.searchNote(this.state.keyword);
   }
 
   onShowClickHandler() {
@@ -49,6 +49,8 @@ class Navbar extends Component {
   }
 }
 
-Navbar.propTypes = {};
+Navbar.propTypes = {
+  searchNote: PropTypes.func.isRequired,
+};
 
 export default Navbar;
