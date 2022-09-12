@@ -13,6 +13,7 @@ function NoteItemDetail({
   onDeleteHandler,
   onArchiveHandler,
   onUnarchiveHandler,
+  onEditHandler,
 }) {
   const navigate = useNavigate();
   const OnClickDeleteHandler = () => {
@@ -45,12 +46,24 @@ function NoteItemDetail({
   };
 
   const onCancelHandler = () => {
-    if(note.archived){
+    if (note.archived) {
       navigate('/notes/archives');
-    }else{
-      navigate('/')
+    } else {
+      navigate('/');
     }
-  }
+  };
+
+  const onClickEditHandler = () => {
+    if (note.archived) {
+      navigate('/notes/archives');
+      onEditHandler({ id: note.id, title: note.title, body: note.body });
+      console.log(note.title);
+    } else {
+      navigate('/');
+      onEditHandler({ id: note.id, title: note.title, body: note.body });
+      console.log(note.title);
+    }
+  };
 
   return (
     <div className='mt-[-72px] w-full flex bg-sky-700 h-screen py-5 justify-center items-center'>
@@ -62,16 +75,17 @@ function NoteItemDetail({
           placeholder='Catatan Baru'
           onChange={onChangeHandler}
         />
-        <div
+        <textarea
           className='overflow-auto focus: bg-yellow-200 p-5 h-full placeholder:text-slate-500 placeholder: focus:outline-none'
-          contentEditable='true'
-          data-placeholder='Catatan Baru'
-          onInput={onInputBodyHandler}
-        >
-          {note.body}
-        </div>
+          value={note.body}
+          placeholder='Tulis sesuatu di sini...'
+          onChange={onInputBodyHandler}
+        />
       </div>
-      <div className='cursor-pointer z-[100] fixed rounded-full p-2 bottom-8 right-10 bg-green-300'>
+      <div
+        onClick={onClickEditHandler}
+        className='cursor-pointer z-[100] fixed rounded-full p-2 bottom-8 right-10 bg-green-300'
+      >
         <BiCheck size={50} />
       </div>
       {note.archived ? (

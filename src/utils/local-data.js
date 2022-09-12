@@ -100,6 +100,10 @@ function unarchiveNote(id) {
 
 function editNote({ id, title, body }) {
   const noteToEdit = notes.find((note) => note.id === id);
+  if (noteToEdit === undefined) {
+    console.log(`data gk masuk: props= ${id}`);
+    return;
+  }
   noteToEdit.title = title;
   noteToEdit.body = body;
 

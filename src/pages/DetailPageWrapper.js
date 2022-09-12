@@ -7,6 +7,7 @@ function DetailPageWrapper({
   onDeleteHandler,
   onArchiveHandler,
   onUnarchiveHandler,
+  onEditHandler,
 }) {
   const { id } = useParams();
 
@@ -17,6 +18,7 @@ function DetailPageWrapper({
         id={id}
         onArchiveHandler={onArchiveHandler}
         onUnarchiveHandler={onUnarchiveHandler}
+        onEditHandler={onEditHandler}
       />
     </div>
   );

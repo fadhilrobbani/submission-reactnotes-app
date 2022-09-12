@@ -32,7 +32,7 @@ class DetailPage extends Component {
       return {
         note: {
           ...prev.note,
-          body: ev.target.textContent,
+          body: ev.target.value,
         },
       };
     }, console.log(this.state.note.body));
@@ -47,6 +47,7 @@ class DetailPage extends Component {
           onDeleteHandler={this.props.onDeleteHandler}
           onArchiveHandler={this.props.onArchiveHandler}
           onUnarchiveHandler={this.props.onUnarchiveHandler}
+          onEditHandler={this.props.onEditHandler}
           note={this.state.note}
         />
       ) : (

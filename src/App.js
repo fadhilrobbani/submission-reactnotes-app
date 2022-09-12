@@ -79,6 +79,16 @@ export class App extends Component {
     });
   }
 
+  onEditHandler({ id, title, body }) {
+    console.log(id);
+    editNote({ id, title, body });
+    this.setState(() => {
+      return {
+        notes: getAllNotes(),
+      };
+    });
+  }
+
   render() {
     return (
       <>
@@ -115,6 +125,7 @@ export class App extends Component {
                   onDeleteHandler={this.onDeleteHandler}
                   onArchiveHandler={this.onArchiveHandler}
                   onUnarchiveHandler={this.onUnarchiveHandler}
+                  onEditHandler={this.onEditHandler}
                 />
               }
             />
