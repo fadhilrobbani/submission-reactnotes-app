@@ -9,16 +9,21 @@ function NotesList({ notes, keyword }) {
   );
   return (
     <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 m-6'>
-      {filteredNotes.map((note) => (
-        <NoteItem
-          key={note.id}
-          id={note.id}
-          title={note.title}
-          createdAt={note.createdAt}
-          body={note.body}
-          archived={note.archived}
-        />
-      ))}
+      {filteredNotes.length > 0 ? (
+        filteredNotes.map((note) => (
+          <NoteItem
+            key={note.id}
+            id={note.id}
+            title={note.title}
+            createdAt={note.createdAt}
+            body={note.body}
+            archived={note.archived}
+          />
+        ))
+      ) : (
+        <h1 className='text-slate-100'>Catatan Kosong</h1>
+      )}
+      {}
     </div>
   );
 }
