@@ -12,14 +12,13 @@ import {
   getAllNotes,
   getActiveNotes,
   getArchivedNotes,
-  getNote,
   addNote,
   editNote,
   deleteNote,
   archiveNote,
   unarchiveNote,
 } from './utils/local-data';
-export class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,6 +41,7 @@ export class App extends Component {
 
   onKeywordChangeHandler(ev) {
     this.setState({ keyword: ev.target.value });
+    
   }
 
   onShowClickHandler() {

@@ -1,8 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import NoteItem from './NoteItem';
+import {useSearchParams} from 'react-router-dom';
 
 function NotesList({ notes, keyword }) {
+  const [searchParams,setSearchParams] = useSearchParams();
+
+  const changeSearchParams = (keyword) => {
+    setSearchParams({ title: keyword });
+  }
+
   const filteredKeyword = keyword.toLowerCase().replace(/\s+/g, '');
   const filteredNotes = notes.filter((note) =>
     note.title.toLowerCase().replace(/\s+/g, '').includes(filteredKeyword)
