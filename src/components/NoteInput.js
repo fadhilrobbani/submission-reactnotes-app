@@ -38,8 +38,6 @@ class NoteInput extends Component {
 
     this.props.addNote(this.state);
     this.props.navigate();
-
-    console.log(this.state);
   }
 
   render() {
@@ -79,6 +77,7 @@ class NoteInput extends Component {
 
 NoteInput.propTypes = {
   addNote: PropTypes.func.isRequired,
+  navigate: PropTypes.func.isRequired,
 };
 
 export default NoteInput;

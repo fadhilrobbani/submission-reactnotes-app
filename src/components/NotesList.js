@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import NoteItem from './NoteItem';
-import {useSearchParams} from 'react-router-dom';
 
 function NotesList({ notes, keyword }) {
   const filteredNotes = notes.filter((note) =>
@@ -29,7 +28,8 @@ function NotesList({ notes, keyword }) {
 }
 
 NotesList.propTypes = {
-  notes: PropTypes.arrayOf(PropTypes.object),
+  notes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  keyword: PropTypes.string.isRequired,
 };
 
 export default NotesList;

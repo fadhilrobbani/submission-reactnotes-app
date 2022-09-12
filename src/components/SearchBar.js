@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { FaSearch, FaArchive } from 'react-icons/fa';
+import { FaSearch } from 'react-icons/fa';
 import { ImCross } from 'react-icons/im';
 import autoBind from 'react-autobind';
 
@@ -31,10 +31,10 @@ class SearchBar extends Component {
     );
   }
 
-  componentDidMount(){
+  componentDidMount() {
     const filteredKeyword = this.state.keyword
-          .toLowerCase()
-          .replace(/\s+/g, '');
+      .toLowerCase()
+      .replace(/\s+/g, '');
     this.props.searchKeyword(filteredKeyword);
   }
 
@@ -76,6 +76,9 @@ class SearchBar extends Component {
   }
 }
 
-SearchBar.propTypes = {};
+SearchBar.propTypes = {
+  searchKeyword: PropTypes.func.isRequired,
+  onSearch: PropTypes.func.isRequired,
+};
 
 export default SearchBar;

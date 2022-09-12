@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { useParams } from 'react-router-dom';
-import NoteInput from '../components/NoteInput';
 import NoteItemDetail from '../components/NoteItemDetail';
 import NotFoundPage from './NotFoundPage';
 import { getNote } from '../utils/local-data';
@@ -35,7 +33,7 @@ class DetailPage extends Component {
           body: ev.target.value,
         },
       };
-    }, console.log(this.state.note.body));
+    });
   }
 
   render() {
@@ -56,5 +54,13 @@ class DetailPage extends Component {
     return <>{checkNote}</>;
   }
 }
+
+DetailPage.propTypes = {
+  id: PropTypes.string.isRequired,
+  onDeleteHandler: PropTypes.func.isRequired,
+  onArchiveHandler: PropTypes.func.isRequired,
+  onUnarchiveHandler: PropTypes.func.isRequired,
+  onEditHandler: PropTypes.func.isRequired,
+};
 
 export default DetailPage;

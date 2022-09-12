@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import DetailPage from './DetailPage';
 
 function DetailPageWrapper({
@@ -24,6 +24,11 @@ function DetailPageWrapper({
   );
 }
 
-DetailPageWrapper.propTypes = {};
+DetailPageWrapper.propTypes = {
+  onDeleteHandler: PropTypes.func.isRequired,
+  onArchiveHandler: PropTypes.func.isRequired,
+  onUnarchiveHandler: PropTypes.func.isRequired,
+  onEditHandler: PropTypes.func.isRequired,
+};
 
 export default DetailPageWrapper;

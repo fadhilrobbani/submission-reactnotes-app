@@ -61,11 +61,9 @@ function NoteItemDetail({
     if (note.archived) {
       navigate('/notes/archives');
       onEditHandler({ id: note.id, title: note.title, body: note.body });
-      console.log(note.title);
     } else {
       navigate('/');
       onEditHandler({ id: note.id, title: note.title, body: note.body });
-      console.log(note.title);
     }
   };
 
@@ -124,6 +122,14 @@ function NoteItemDetail({
   );
 }
 
-NoteItemDetail.propTypes = {};
+NoteItemDetail.propTypes = {
+  note: PropTypes.object.isRequired,
+  onChangeHandler: PropTypes.func.isRequired,
+  onInputBodyHandler: PropTypes.func.isRequired,
+  onDeleteHandler: PropTypes.func.isRequired,
+  onArchiveHandler: PropTypes.func.isRequired,
+  onUnarchiveHandler: PropTypes.func.isRequired,
+  onEditHandler: PropTypes.func.isRequired,
+};
 
 export default NoteItemDetail;

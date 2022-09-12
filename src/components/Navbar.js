@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FaArchive } from 'react-icons/fa';
-import SearchBar from './SearchBar';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import SearchBarWrapper from './SearchBarWrapper';
 
@@ -44,6 +43,8 @@ function Navbar({ searchKeyword }) {
   );
 }
 
-Navbar.propTypes = {};
+Navbar.propTypes = {
+  searchKeyword: PropTypes.func.isRequired,
+};
 
 export default Navbar;

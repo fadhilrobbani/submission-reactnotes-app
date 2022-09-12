@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import NotesList from '../components/NotesList';
 
 function ArchiveNotesPage({ notes, keyword }) {
@@ -9,5 +10,10 @@ function ArchiveNotesPage({ notes, keyword }) {
     </div>
   );
 }
+
+ArchiveNotesPage.propTypes = {
+  notes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  keyword: PropTypes.string.isRequired,
+};
 
 export default ArchiveNotesPage;
