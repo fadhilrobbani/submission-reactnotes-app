@@ -1,13 +1,13 @@
 import React from 'react';
 import NotesList from '../components/NotesList';
 
-function ArchiveNotes({ notes, keyword }) {
+function AllNotesPage({ notes, keyword }) {
   return (
     <div>
-      <p className='text-xl'>Catatan yang diarsipkan</p>
+      <p className='text-xl'>Semua Catatan</p>
       <NotesList notes={notes} keyword={keyword} />
     </div>
   );
 }
 
-export default ArchiveNotes;
+export default AllNotesPage;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import NoteInputWrapper from '../components/NoteInputWrapper';
 
-function NewNote({ addNote }) {
+function NewNotePage({ addNote }) {
   return (
     <section>
       <NoteInputWrapper addNote={addNote} />
@@ -11,8 +11,8 @@ function NewNote({ addNote }) {
   );
 }
 
-NewNote.propTypes = {
+NewNotePage.propTypes = {
   addNote: PropTypes.func.isRequired,
 };
 
-export default NewNote;
+export default NewNotePage;

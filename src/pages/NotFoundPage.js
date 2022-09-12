@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import notFound from '../assets/image/notFound.png';
 
-function NotFound() {
+function NotFoundPage() {
   const navigate = useNavigate();
   return (
     <div className='w-full flex justify-center'>
@@ -20,4 +20,4 @@ function NotFound() {
   );
 }
 
-export default NotFound;
+export default NotFoundPage;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import NotesList from '../components/NotesList';
 import AddButton from '../components/AddButton';
 
-function Home({ notes, keyword }) {
+function HomePage({ notes, keyword }) {
   return (
     <div>
       <NotesList notes={notes} keyword={keyword} />
@@ -12,9 +12,9 @@ function Home({ notes, keyword }) {
   );
 }
 
-Home.propTypes = {
+HomePage.propTypes = {
   notes: PropTypes.arrayOf(PropTypes.object).isRequired,
   keyword: PropTypes.string.isRequired,
 };
 
-export default Home;
+export default HomePage;

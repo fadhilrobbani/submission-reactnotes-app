@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
-import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai';
+import { IoMdClose } from 'react-icons/io';
+import { BiCheck} from 'react-icons/bi';
 import swal from 'sweetalert';
 
 class NoteInput extends Component {
@@ -39,7 +40,7 @@ class NoteInput extends Component {
 
     this.props.addNote(this.state);
     this.props.navigate();
-    
+
     console.log(this.state);
   }
 
@@ -48,7 +49,7 @@ class NoteInput extends Component {
       <div className='mt-[-72px] w-full flex bg-sky-700 h-screen py-5 justify-center items-center'>
         <div className='w-3/4 h-1/2 flex justify-center flex-col '>
           <input
-            className='bg-yellow-400 text-2xl p-5 placeholder:text-slate-500 placeholder:text-2xl focus:outline-none '
+            className='bg-yellow-400 text-2xl font-bold p-5 placeholder:text-slate-500 placeholder:text-2xl focus:outline-none '
             type='text'
             onChange={this.onInputChangeHandler}
             value={this.state.title}
@@ -65,13 +66,13 @@ class NoteInput extends Component {
           className='cursor-pointer z-[100] fixed rounded-full p-2 bottom-8 right-10 bg-green-200'
           onClick={this.onClickSubmitHandler}
         >
-          <AiOutlineCheck size={50} />
+          <BiCheck size={50} />
         </div>
         <div
           onClick={this.props.navigate}
-          className='cursor-pointer z-[100] fixed rounded-full p-2 bottom-8 right-36 bg-pink-200'
+          className='cursor-pointer z-[100] fixed rounded-full p-2 bottom-8 right-36 bg-amber-300'
         >
-          <AiOutlineClose size={50} />
+          <IoMdClose size={50} />
         </div>
       </div>
     );

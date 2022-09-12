@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import AllNotes from './pages/AllNotes';
-import ArchiveNotes from './pages/ArchiveNotes';
-import Home from './pages/Home';
-import NewNote from './pages/NewNote';
-import NotFound from './pages/NotFound';
+import AllNotesPage from './pages/AllNotesPage';
+import ArchiveNotesPage from './pages/ArchiveNotesPage';
+import HomePage from './pages/HomePage';
+import NewNotePage from './pages/NewNotePage';
+import DetailPageWrapper from './pages/DetailPageWrapper';
+import NotFoundPage from './pages/NotFoundPage';
 import {
   getAllNotes,
   getActiveNotes,
@@ -51,6 +52,33 @@ export class App extends Component {
     });
   }
 
+  onDeleteHandler(id) {
+    deleteNote(id);
+    this.setState(() => {
+      return {
+        notes: getAllNotes(),
+      };
+    });
+  }
+
+  onArchiveHandler(id) {
+    archiveNote(id);
+    this.setState(() => {
+      return {
+        notes: getAllNotes(),
+      };
+    });
+  }
+
+  onUnarchiveHandler(id) {
+    unarchiveNote(id);
+    this.setState(() => {
+      return {
+        notes: getAllNotes(),
+      };
+    });
+  }
+
   render() {
     return (
       <>
@@ -64,7 +92,7 @@ export class App extends Component {
           <Route
             path='/'
             element={
-              <Home
+              <HomePage
                 notes={getActiveNotes(this.state.notes)}
                 keyword={this.state.keyword}
               />
@@ -74,28 +102,38 @@ export class App extends Component {
             <Route
               index
               element={
-                <AllNotes
+                <AllNotesPage
                   notes={this.state.notes}
                   keyword={this.state.keyword}
                 />
               }
             />
-            <Route path='note/:id' />
+            <Route
+              path='note/:id'
+              element={
+                <DetailPageWrapper
+                  onDeleteHandler={this.onDeleteHandler}
+                  onArchiveHandler={this.onArchiveHandler}
+                  onUnarchiveHandler={this.onUnarchiveHandler}
+                />
+              }
+            />
+
             <Route
               path='new'
-              element={<NewNote addNote={this.onAddNoteHandler} />}
+              element={<NewNotePage addNote={this.onAddNoteHandler} />}
             />
             <Route
               path='archives'
               element={
-                <ArchiveNotes
+                <ArchiveNotesPage
                   notes={getArchivedNotes(this.state.notes)}
                   keyword={this.state.keyword}
                 />
               }
             />
           </Route>
-          <Route path='/*' element={<NotFound />} />
+          <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </>
     );
