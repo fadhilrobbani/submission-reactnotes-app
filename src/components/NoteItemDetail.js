@@ -44,6 +44,14 @@ function NoteItemDetail({
     onUnarchiveHandler(note.id);
   };
 
+  const onCancelHandler = () => {
+    if(note.archived){
+      navigate('/notes/archives');
+    }else{
+      navigate('/')
+    }
+  }
+
   return (
     <div className='mt-[-72px] w-full flex bg-sky-700 h-screen py-5 justify-center items-center'>
       <div className='w-3/4 h-1/2 flex justify-center flex-col '>
@@ -83,7 +91,7 @@ function NoteItemDetail({
       )}
 
       <div
-        onClick={() => navigate('/')}
+        onClick={onCancelHandler}
         className='cursor-pointer z-[100] fixed rounded-full p-2 bottom-8 right-[352px] bg-amber-400'
       >
         <IoMdClose size={50} />

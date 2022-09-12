@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import { useParams } from 'react-router-dom';
 import NoteInput from '../components/NoteInput';
 import NoteItemDetail from '../components/NoteItemDetail';
-import { getNote } from '../utils/local-data';
 import NotFoundPage from './NotFoundPage';
+import { getNote } from '../utils/local-data';
+import autobind from 'react-autobind';
 
 class DetailPage extends Component {
   constructor(props) {
@@ -12,12 +13,14 @@ class DetailPage extends Component {
     this.state = {
       note: getNote(props.id),
     };
+    autobind(this);
   }
 
   onChangeHandler(ev) {
-    this.setState(() => {
+    this.setState((prev) => {
       return {
         note: {
+          ...prev.note,
           title: ev.target.value,
         },
       };
@@ -25,13 +28,14 @@ class DetailPage extends Component {
   }
 
   onInputBodyHandler(ev) {
-    this.setState(() => {
+    this.setState((prev) => {
       return {
         note: {
+          ...prev.note,
           body: ev.target.textContent,
         },
       };
-    });
+    }, console.log(this.state.note.body));
   }
 
   render() {
