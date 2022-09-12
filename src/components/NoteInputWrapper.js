@@ -5,6 +5,7 @@ import NoteInput from './NoteInput';
 
 function NoteInputWrapper({ addNote }) {
   const navigate = useNavigate();
+
   return (
     <>
       <NoteInput navigate={() => navigate('/')} addNote={addNote} />

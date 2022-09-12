@@ -54,6 +54,10 @@ function NoteItemDetail({
   };
 
   const onClickEditHandler = () => {
+    if (note.title === '' || note.body === '') {
+      swal('Judul dan Isi Catatan Anda Tidak Boleh Kosong ya!');
+      return;
+    }
     if (note.archived) {
       navigate('/notes/archives');
       onEditHandler({ id: note.id, title: note.title, body: note.body });

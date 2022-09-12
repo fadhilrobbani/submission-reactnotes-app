@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import { IoMdClose } from 'react-icons/io';
-import { BiCheck} from 'react-icons/bi';
+import { BiCheck } from 'react-icons/bi';
 import swal from 'sweetalert';
 
 class NoteInput extends Component {
@@ -32,8 +32,6 @@ class NoteInput extends Component {
 
   onClickSubmitHandler() {
     if (this.state.title === '' || this.state.body === '') {
-      console.log('ini title ' + this.state.title);
-      console.log('ini body ' + this.state.body);
       swal('Judul dan Isi Catatan Anda Tidak Boleh Kosong ya!');
       return;
     }

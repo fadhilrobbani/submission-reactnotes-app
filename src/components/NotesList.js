@@ -4,15 +4,8 @@ import NoteItem from './NoteItem';
 import {useSearchParams} from 'react-router-dom';
 
 function NotesList({ notes, keyword }) {
-  const [searchParams,setSearchParams] = useSearchParams();
-
-  const changeSearchParams = (keyword) => {
-    setSearchParams({ title: keyword });
-  }
-
-  const filteredKeyword = keyword.toLowerCase().replace(/\s+/g, '');
   const filteredNotes = notes.filter((note) =>
-    note.title.toLowerCase().replace(/\s+/g, '').includes(filteredKeyword)
+    note.title.toLowerCase().replace(/\s+/g, '').includes(keyword)
   );
   return (
     <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 m-6'>
