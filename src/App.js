@@ -94,10 +94,10 @@ class App extends Component {
               />
             }
           />
-          <Route path='/notes'>
+          <Route path='/notes/'>
             <Route index element={<NotFoundPage />} />
             <Route
-              path='note/:id'
+              path=':id'
               element={
                 <DetailPageWrapper
                   onDeleteHandler={this.onDeleteHandler}
@@ -112,16 +112,16 @@ class App extends Component {
               path='new'
               element={<NewNotePage addNote={this.onAddNoteHandler} />}
             />
-            <Route
-              path='archives'
-              element={
-                <ArchiveNotesPage
-                  notes={getArchivedNotes(this.state.notes)}
-                  keyword={this.state.searchKeyword}
-                />
-              }
-            />
           </Route>
+          <Route
+            path='archives'
+            element={
+              <ArchiveNotesPage
+                notes={getArchivedNotes(this.state.notes)}
+                keyword={this.state.searchKeyword}
+              />
+            }
+          />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </>

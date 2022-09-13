@@ -21,7 +21,7 @@ function Navbar({ searchKeyword }) {
         </Link>
       </h1>
       <div className='flex gap-6 items-center justify-end w-full'>
-        {window.location.pathname.includes('/note/') ||
+        {window.location.pathname.includes('/notes/notes-') ||
         window.location.pathname.includes('/new') ? null : (
           <SearchBarWrapper searchKeyword={searchKeyword} />
         )}
@@ -30,8 +30,8 @@ function Navbar({ searchKeyword }) {
           onClick={() =>
             navigate(
               searchParam[0].get('title')
-                ? `/notes/archives/?title=${searchParam[0].get('title')}`
-                : '/notes/archives'
+                ? `/archives/?title=${searchParam[0].get('title')}`
+                : '/archives'
             )
           }
           className='cursor-pointer'

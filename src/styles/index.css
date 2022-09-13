@@ -10,7 +10,10 @@ html {
   @apply scroll-smooth;
 }
 
-body{
-  @apply bg-sky-700
+body {
+  @apply bg-sky-700;
 }
 
+.action-buttons {
+  @apply text-[25px] tiny:text-[35px] sm:text-[48px];
+}

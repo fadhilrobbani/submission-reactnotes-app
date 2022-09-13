@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { BiTrash, BiCheck } from 'react-icons/bi';
 import { MdOutlineArchive, MdOutlineUnarchive } from 'react-icons/md';
-import { IoMdClose } from 'react-icons/io';
+import { IoMdArrowBack } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 
@@ -26,7 +26,7 @@ function NoteItemDetail({
     }).then((willDelete) => {
       if (willDelete) {
         if (note.archived) {
-          navigate('/notes/archives');
+          navigate('/archives');
         } else {
           navigate('/');
         }
@@ -41,13 +41,13 @@ function NoteItemDetail({
   };
 
   const onClickUnarchiveHandler = () => {
-    navigate('/notes/archives');
+    navigate('/archives');
     onUnarchiveHandler(note.id);
   };
 
   const onCancelHandler = () => {
     if (note.archived) {
-      navigate('/notes/archives');
+      navigate('/archives');
     } else {
       navigate('/');
     }
@@ -59,7 +59,7 @@ function NoteItemDetail({
       return;
     }
     if (note.archived) {
-      navigate('/notes/archives');
+      navigate('/archives');
       onEditHandler({ id: note.id, title: note.title, body: note.body });
     } else {
       navigate('/');
@@ -68,55 +68,56 @@ function NoteItemDetail({
   };
 
   return (
-    <div className='mt-[-72px] w-full flex bg-sky-700 h-screen py-5 justify-center items-center'>
-      <div className='w-3/4 h-1/2 flex justify-center flex-col '>
+    <div className=' w-full flex py-5 justify-center items-center'>
+      <div className='w-3/4 flex justify-center flex-col '>
         <input
-          className='bg-yellow-400 text-2xl p-5 placeholder:text-slate-500 placeholder:text-2xl focus:outline-none '
+          className='bg-yellow-400 h-28 text-3xl font-bold p-5 placeholder:text-slate-500 placeholder:text-3xl focus:outline-none '
           type='text'
           value={note.title}
           placeholder='Catatan Baru'
           onChange={onChangeHandler}
         />
         <textarea
-          className='overflow-auto focus: bg-yellow-200 p-5 h-full placeholder:text-slate-500 placeholder: focus:outline-none'
+          className='overflow-auto text-xl h-80  bg-yellow-200  p-5  placeholder:text-slate-500 placeholder: focus:outline-none'
           value={note.body}
           placeholder='Tulis sesuatu di sini...'
           onChange={onInputBodyHandler}
         />
       </div>
-      <div
-        onClick={onClickEditHandler}
-        className='cursor-pointer z-[100] fixed rounded-full p-2 bottom-8 right-10 bg-green-300'
-      >
-        <BiCheck size={50} />
-      </div>
-      {note.archived ? (
+      <div className='bg-slate-400/75 z-[100] fixed bottom-5 flex flex-row-reverse gap-6 p-3 rounded-2xl'>
         <div
-          onClick={onClickUnarchiveHandler}
-          className='cursor-pointer z-[100] fixed rounded-full p-2 bottom-8 right-36 bg-purple-300'
+          onClick={onClickEditHandler}
+          className='cursor-pointer rounded-full p-2  bg-green-300'
         >
-          <MdOutlineUnarchive size={50} />
+          <BiCheck className='action-buttons' />
         </div>
-      ) : (
+        {note.archived ? (
+          <div
+            onClick={onClickUnarchiveHandler}
+            className='cursor-pointer rounded-full p-2  bg-purple-300'
+          >
+            <MdOutlineUnarchive className='action-buttons' />
+          </div>
+        ) : (
+          <div
+            onClick={onClickArchiveHandler}
+            className='cursor-pointer rounded-full p-2 bg-purple-300'
+          >
+            <MdOutlineArchive className='action-buttons' />
+          </div>
+        )}
         <div
-          onClick={onClickArchiveHandler}
-          className='cursor-pointer z-[100] fixed rounded-full p-2 bottom-8 right-36 bg-purple-300'
+          onClick={OnClickDeleteHandler}
+          className='cursor-pointer rounded-full p-2  bg-pink-400'
         >
-          <MdOutlineArchive size={50} />
+          <BiTrash className='action-buttons' />
         </div>
-      )}
-
-      <div
-        onClick={onCancelHandler}
-        className='cursor-pointer z-[100] fixed rounded-full p-2 bottom-8 right-[352px] bg-amber-400'
-      >
-        <IoMdClose size={50} />
-      </div>
-      <div
-        onClick={OnClickDeleteHandler}
-        className='cursor-pointer z-[100] fixed rounded-full p-2 bottom-8 right-[248px] bg-pink-400'
-      >
-        <BiTrash size={50} />
+        <div
+          onClick={onCancelHandler}
+          className='cursor-pointer rounded-full p-2  bg-amber-400'
+        >
+          <IoMdArrowBack className='action-buttons' />
+        </div>
       </div>
     </div>
   );

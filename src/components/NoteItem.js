@@ -8,7 +8,7 @@ function NoteItem({ id, title, body, createdAt }) {
   const navigate = useNavigate();
   return (
     <div
-      onClick={() => navigate(`/notes/note/${id}`)}
+      onClick={() => navigate(`/notes/${id}`)}
       className='flex group flex-col gap-2  bg-yellow-200 shadow-lg cursor-pointer  hover:scale-105  transition duration-200  h-[300px] '
     >
       <div className=' bg-yellow-400 w-full p-3'>
