@@ -7,6 +7,7 @@ import AddButton from '../components/AddButton';
 function HomePage({ notes, keyword }) {
   return (
     <div>
+      <p className=' text-xl font-semibold m-6  text-slate-100 text-center w-auto rounded-lg  bg-emerald-500 p-4'>Catatan Aktif</p>
       <NotesList notes={notes} keyword={keyword} />
       <AddButton />
     </div>
