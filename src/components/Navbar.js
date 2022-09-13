@@ -33,7 +33,7 @@ function Navbar({ searchKeyword }) {
           }
           className='cursor-pointer'
         >
-          <MdOutlineArchive size={34} />
+          <MdOutlineArchive className='hover:scale-105 transition duration-150' size={34} />
         </div>
       </div>
     </header>

@@ -7,7 +7,7 @@ function AddButton() {
   return (
     <div
       onClick={() => navigate('/notes/new')}
-      className='cursor-pointer z-[100] fixed rounded-full p-2 bottom-5 right-8 bg-slate-200'
+      className='hover:bg-yellow-300 cursor-pointer z-[100] fixed rounded-full p-2 bottom-5 right-8 bg-slate-200'
     >
       <AiOutlinePlus size={50} />
     </div>
