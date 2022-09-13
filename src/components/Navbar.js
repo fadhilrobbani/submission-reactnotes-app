@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FaArchive } from 'react-icons/fa';
+import { MdOutlineArchive} from 'react-icons/md';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import SearchBarWrapper from './SearchBarWrapper';
 
@@ -36,7 +36,7 @@ function Navbar({ searchKeyword }) {
           }
           className='cursor-pointer'
         >
-          <FaArchive size={24} />
+          <MdOutlineArchive size={34} />
         </div>
       </div>
     </header>
