@@ -5,7 +5,6 @@ import Navbar from './components/Navbar';
 import ArchiveNotesPage from './pages/ArchiveNotesPage';
 import HomePage from './pages/HomePage';
 import NewNotePage from './pages/NewNotePage';
-import DetailPageWrapper from './pages/DetailPageWrapper';
 import NotFoundPage from './pages/NotFoundPage';
 import {
   getAllNotes,
@@ -17,6 +16,7 @@ import {
   archiveNote,
   unarchiveNote,
 } from './utils/local-data';
+import DetailPage from './pages/DetailPage';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -99,7 +99,8 @@ class App extends Component {
             <Route
               path=':id'
               element={
-                <DetailPageWrapper
+                <DetailPage
+                  addNote={this.onAddNoteHandler}
                   onDeleteHandler={this.onDeleteHandler}
                   onArchiveHandler={this.onArchiveHandler}
                   onUnarchiveHandler={this.onUnarchiveHandler}
@@ -110,7 +111,15 @@ class App extends Component {
 
             <Route
               path='new'
-              element={<NewNotePage addNote={this.onAddNoteHandler} />}
+              element={
+                <NewNotePage
+                  addNote={this.onAddNoteHandler}
+                  onDeleteHandler={this.onDeleteHandler}
+                  onArchiveHandler={this.onArchiveHandler}
+                  onUnarchiveHandler={this.onUnarchiveHandler}
+                  onEditHandler={this.onEditHandler}
+                />
+              }
             />
           </Route>
           <Route

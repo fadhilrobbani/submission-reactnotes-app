@@ -11,6 +11,7 @@ function ActionButtons({
   onClickUnarchiveHandler,
   OnClickDeleteHandler,
   onCancelHandler,
+  onClickSubmitHandler,
 }) {
   return (
     <div className='bg-slate-400/75 z-[100] fixed bottom-5 flex flex-row-reverse gap-6 p-3 rounded-2xl'>
@@ -18,7 +19,7 @@ function ActionButtons({
         <>
           <div
             className='cursor-pointer  rounded-full p-2 bottom-8 right-10 bg-green-200'
-            onClick={this.onClickSubmitHandler}
+            onClick={onClickSubmitHandler}
           >
             <BiCheck className='action-buttons' />
           </div>
@@ -70,6 +71,14 @@ function ActionButtons({
   );
 }
 
-ActionButtons.propTypes = {};
+ActionButtons.propTypes = {
+  note: PropTypes.object.isRequired,
+  onClickEditHandler: PropTypes.func.isRequired,
+  onClickArchiveHandler: PropTypes.func.isRequired,
+  onClickUnarchiveHandler: PropTypes.func.isRequired,
+  OnClickDeleteHandler: PropTypes.func.isRequired,
+  onCancelHandler: PropTypes.func.isRequired,
+  onClickSubmitHandler: PropTypes.func.isRequired,
+};
 
 export default ActionButtons;

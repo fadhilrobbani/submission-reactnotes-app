@@ -1,62 +1,37 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import NoteItemDetail from '../components/NoteItemDetail';
-import NotFoundPage from './NotFoundPage';
-import { getNote } from '../utils/local-data';
-import autobind from 'react-autobind';
+import React from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import NoteInput from '../components/NoteInput';
 
-class DetailPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      note: getNote(props.id),
-    };
-    autobind(this);
-  }
-
-  onChangeHandler(ev) {
-    this.setState((prev) => {
-      return {
-        note: {
-          ...prev.note,
-          title: ev.target.value,
-        },
-      };
-    });
-  }
-
-  onInputBodyHandler(ev) {
-    this.setState((prev) => {
-      return {
-        note: {
-          ...prev.note,
-          body: ev.target.value,
-        },
-      };
-    });
-  }
-
-  render() {
-    const checkNote =
-      this.state.note !== undefined ? (
-        <NoteItemDetail
-          onChangeHandler={this.onChangeHandler}
-          onInputBodyHandler={this.onInputBodyHandler}
-          onDeleteHandler={this.props.onDeleteHandler}
-          onArchiveHandler={this.props.onArchiveHandler}
-          onUnarchiveHandler={this.props.onUnarchiveHandler}
-          onEditHandler={this.props.onEditHandler}
-          note={this.state.note}
-        />
-      ) : (
-        <NotFoundPage />
-      );
-    return <>{checkNote}</>;
-  }
+function DetailPage({
+  addNote,
+  onDeleteHandler,
+  onArchiveHandler,
+  onUnarchiveHandler,
+  onEditHandler,
+}) {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const navigateTo = (path) => {
+    navigate(path);
+  };
+  return (
+    <>
+      <NoteInput
+        addNote={addNote}
+        onDeleteHandler={onDeleteHandler}
+        onArchiveHandler={onArchiveHandler}
+        onUnarchiveHandler={onUnarchiveHandler}
+        onEditHandler={onEditHandler}
+        navigate={navigateTo}
+        id={id}
+      />
+    </>
+  );
 }
 
 DetailPage.propTypes = {
-  id: PropTypes.string.isRequired,
+  addNote: PropTypes.func.isRequired,
   onDeleteHandler: PropTypes.func.isRequired,
   onArchiveHandler: PropTypes.func.isRequired,
   onUnarchiveHandler: PropTypes.func.isRequired,
